@@ -6,7 +6,7 @@ $conexion=$c->conexion();
 ?>
 
 
-<h4>Vender un producto</h4>
+<h4 style="padding-bottom: 2rem; padding-top: 1rem;">Vender un producto</h4>
 <div class="row">
 	<div class="col-sm-4">
 		<form id="frmVentasProductos">

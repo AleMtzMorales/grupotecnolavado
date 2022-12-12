@@ -9,7 +9,11 @@ use Dompdf\Options;
 
 ob_start();
 
-$id=$_GET['idventa'];
+/***RECIBIENDO LAS VARIABLE DE LA FECHA */
+$fechaInit = date("Y-m-d", strtotime($_POST['fechaIngreso']));
+$fechaFin  = date("Y-m-d", strtotime($_POST['fechaFin']));
+
+// $id=$_GET['idventa'];
 // Introducimos HTML de prueba
 function file_get_contents_curl($url) {
     $ch = curl_init();
@@ -24,7 +28,7 @@ function file_get_contents_curl($url) {
     return $data;
 }
 
- $html=file_get_contents("http://localhost/ventas/vistas/ventas/rerpoteVentaPdf.php?idventa=".$id);
+ $html=file_get_contents("http://localhost/ventas/vistas/ventas/rerpoteVentaPdf.php?fechaIngreso=".$fechaInit."&fechaFin=".$fechaFin);
 
 //Aquí se crea el objeto a utilizar
 $options = new Options();
