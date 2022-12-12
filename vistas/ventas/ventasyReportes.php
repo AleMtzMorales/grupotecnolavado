@@ -17,45 +17,6 @@ $result = mysqli_query($conexion, $sql);
 
 <h4 style="padding-bottom: 2rem; padding-top: 1rem;">Reportes y ventas</h4>
 
-<!-- <div class="container">
-	<div class="row">
-
-		<div class="col-md-10 text-center mt-5">
-			<form action="DescargarReporte_x_fecha.php" method="post" accept-charset="utf-8">
-				<div class="row">
-					<div class="col-4 col-md-3">
-						<input type="date" name="fecha_ingreso" class="form-control" placeholder="Fecha de Inicio" required>
-					</div>
-					<div class="col-4 col-md-3">
-						<input type="date" name="fechaFin" class="form-control" placeholder="Fecha Final" required>
-					</div>
-					<div class="col-6 col-md-2">
-						<span class="btn btn-dark mb-2" id="filtro">Filtrar</span>
-						<button type="submit" class="btn btn-danger mb-2">Descargar Reporte</button>
-					</div>
-				</div>
-			</form>
-		</div>
-
-		<div class="col-md-12 text-center mt-5">
-			<span id="loaderFiltro"> </span>
-		</div>
-
-
-
-
-	</div>
-</div> -->
-
-<!-- <div class="row">
-	<div class="col-12 col-md-8">.col-12 .col-md-8</div>
-	<div class="col-6 col-md-4">.col-6 .col-md-4</div>
-</div> -->
-
-
-
-
-
 <div class="row">
 	<div class="col-sm-1"></div>
 	<section>
