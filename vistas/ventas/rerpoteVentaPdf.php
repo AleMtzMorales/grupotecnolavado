@@ -10,28 +10,35 @@ $myObjConstants = new Constants();
 
 $c = new conectar();
 $conexion = $c->conexion();
-$idventa = $_GET['idventa'];
+
+
+/***RECIBIENDO LAS VARIABLE DE LA FECHA */
+$fechaInit = date("Y-m-d", strtotime($_GET['fechaIngreso']));
+$fechaFin  = date("Y-m-d", strtotime($_GET['fechaFin']));
+
+// $idventa = $_GET['idventa'];
 // $fechaInicio = $_GET['finicio'];
 // $fechaFinal = $_GET['ffinal'];
 
-$sql = "SELECT ve.id_venta,
-		ve.fechaCompra,
-		ve.id_cliente,
-		art.nombre,
-        art.precio,
-        art.descripcion
-	from ventas  as ve 
-	inner join articulos as art
-	on ve.id_producto=art.id_producto
-	and ve.id_venta='$idventa'";
+// $sql = "SELECT ve.id_venta,
+// 		ve.fechaCompra,
+// 		ve.id_cliente,
+// 		art.nombre,
+//         art.precio,
+//         art.descripcion
+// 	from ventas  as ve 
+// 	inner join articulos as art
+// 	on ve.id_producto=art.id_producto
+// 	where `fechaCompra` BETWEEN '$fechaInit' AND '$fechaFin'";
 
-$result = mysqli_query($conexion, $sql);
 
-$ver = mysqli_fetch_row($result);
+// $result = mysqli_query($conexion, $sql);
 
-$folio = $ver[0];
-$fecha = $ver[1];
-$idcliente = $ver[2];
+// $ver = mysqli_fetch_row($result);
+
+// $folio = $ver[0];
+// $fecha = $ver[1];
+// $idcliente = $ver[2];
 
 ?>
 <!DOCTYPE html>
@@ -82,26 +89,38 @@ $idcliente = $ver[2];
 
 	<br>
 	<table id="report" style="text-align: center; padding-bottom: 5px">
+		<tr>
+			<td> Reporte de ventas con fechas del <?php echo "<strong>$fechaInit</strong>" ?> al <?php echo "<strong>$fechaFin</strong>" ?> <br></td>
+		</tr>
+
+		<tr>
+			<td> Fecha de creacion:
+				<strong>
+					<?php
+					date_default_timezone_set('America/Mexico_City');
+					$date = date_create();
+					echo date_format($date, "Y/m/d H:i:s");
+					?>
+				</strong>
+			</td>
+		</tr>
+
+
 		<!-- <tr>
-			<td>Fecha inicio: <?php echo $fechaInicio ?></td>
-		</tr>
-		<tr>
-			<td>Fecha final: <?php echo $fechaFinal ?></td>
+			<td>Fecha final: <?php echo $fechaFin ?></td>
 		</tr> -->
-		<tr>
-			<td>Fecha inicio: <?php echo $fecha ?></td>
-		</tr>
-		<tr>
+		<!-- <tr>
 			<td>Folio: <?php echo $folio ?></td>
 		</tr>
 		<tr>
 			<td>cliente: <?php echo $objv->nombreCliente($idcliente); ?></td>
-		</tr>
+		</tr> -->
 	</table>
 
 
-	<table id="report"style=" border-collapse: collapse; padding-bottom: 5px">
+	<table id="report" style=" border-collapse: collapse; padding-bottom: 5px">
 		<tr>
+			<td><strong>Folio venta</strong></td>
 			<td><strong>Producto</strong></td>
 			<td><strong>Precio</strong></td>
 			<td><strong>Cantidad</strong></td>
@@ -110,32 +129,34 @@ $idcliente = $ver[2];
 
 		<?php
 		$sql = "SELECT ve.id_venta,
-						ve.fechaCompra,
-						ve.id_cliente,
-						art.nombre,
-				        art.precio,
-				        art.descripcion
-					from ventas  as ve 
-					inner join articulos as art
-					on ve.id_producto=art.id_producto
-					and ve.id_venta='$idventa'";
+							ve.fechaCompra,
+							ve.id_cliente,
+							art.nombre,
+							art.precio,
+							art.descripcion
+							from ventas  as ve 
+							inner join articulos as art
+							on ve.id_producto=art.id_producto 	where `fechaCompra` BETWEEN '$fechaInit' AND '$fechaFin' ORDER BY `id_venta` ASC";
+
 
 		$result = mysqli_query($conexion, $sql);
 		$total = 0;
-		while ($mostrar = mysqli_fetch_row($result)) :
+		while ($mostrar = mysqli_fetch_row($result)) {
 		?>
+			
+				<tr>
+					<td><?php echo $mostrar[0]; ?></td>
 
-			<tr>
-				<td><?php echo $ver[3]; ?></td>
-				<td><?php echo $ver[4]; ?></td>
-				<td>1</td>
-				<td><?php echo $ver[5]; ?></td>
-			</tr>
-		<?php
-			$total = $total + $ver[4];
-		endwhile;
-		?>
+					<td><?php echo $mostrar[3]; ?></td>
+					<td><?php echo "$".number_format($mostrar[4], 2, '.', ',') ?></td>
+					<td>1</td>
+					<td><?php echo $mostrar[5]; ?></td>
+				</tr>
 		
+		<?php
+			$total = $total + $mostrar[4];
+		};
+		?>
 	</table>
 
 	<p><strong> Total: <?php echo "$" . $total; ?></strong></p>
