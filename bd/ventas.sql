@@ -35,7 +35,7 @@ create table articulos(
 				id_usuario int not null,
 				nombre varchar(50),
 				descripcion varchar(500),
-				cantidad int,
+				cantidad float,
 				precio float,
 				fechaCaptura date,
 				primary key(id_producto)
@@ -60,5 +60,11 @@ create table ventas(
 				id_producto int,
 				id_usuario int,
 				precio float,
-				fechaCompra date
+				cantidad float,
+				fechaCompra DATETIME, 
+				estatus int
 					);
+
+-- Valores para el campo estatus del la tabla ventas
+--	0 -> Pendiente
+--  1 -> Pagado

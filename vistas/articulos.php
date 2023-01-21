@@ -35,10 +35,10 @@ if(isset($_SESSION['usuario'])){
 						<input type="text" class="form-control input-sm" id="nombre" name="nombre">
 						<label>Descripcion</label>
 						<input type="text" class="form-control input-sm" id="descripcion" name="descripcion">
-						<label>Cantidad</label>
-						<input type="text" class="form-control input-sm" id="cantidad" name="cantidad">
-						<label>Kilo</label>
-						<input type="text" class="form-control input-sm" id="precio" name="precio">
+						<label>Cantidad kg / piezas</label>
+						<input type="number" class="form-control input-sm" id="cantidad" name="cantidad">
+						<label>Precio</label>
+						<input type="number" class="form-control input-sm" id="precio" name="precio">
 						<label>Imagen</label>
 						<input type="file" id="imagen" name="imagen">
 						<p></p>
@@ -80,7 +80,7 @@ if(isset($_SESSION['usuario'])){
 							<input type="text" class="form-control input-sm" id="nombreU" name="nombreU">
 							<label>Descripcion</label>
 							<input type="text" class="form-control input-sm" id="descripcionU" name="descripcionU">
-							<label>Cantidad</label>
+							<label>Cantidad kg / piezas</label>
 							<input type="text" class="form-control input-sm" id="cantidadU" name="cantidadU">
 							<label>Precio</label>
 							<input type="text" class="form-control input-sm" id="precioU" name="precioU">
@@ -127,14 +127,14 @@ if(isset($_SESSION['usuario'])){
 					success:function(r){
 						if(r==1){
 							$('#tablaArticulosLoad').load("articulos/tablaArticulos.php");
-							alertify.success("Eliminado con exito!!");
+							alertify.success("¡Eliminado con éxito!");
 						}else{
-							alertify.error("No se pudo eliminar :(");
+							alertify.error("No se pudo eliminar");
 						}
 					}
 				});
 			}, function(){ 
-				alertify.error('Cancelo !')
+				alertify.error('¡Operación cancelada!')
 			});
 		}
 	</script>

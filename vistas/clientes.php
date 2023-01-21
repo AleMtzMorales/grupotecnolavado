@@ -23,7 +23,7 @@ if(isset($_SESSION['usuario'])){
 						<input type="text" class="form-control input-sm" id="apellidos" name="apellidos">
 						<label>Direccion</label>
 						<input type="text" class="form-control input-sm" id="direccion" name="direccion">
-						<label>Email</label>
+						<label>Observaciones</label>
 						<input type="text" class="form-control input-sm" id="email" name="email">
 						<label>Telefono</label>
 						<input type="text" class="form-control input-sm" id="telefono" name="telefono">
@@ -57,7 +57,7 @@ if(isset($_SESSION['usuario'])){
 							<input type="text" class="form-control input-sm" id="apellidosU" name="apellidosU">
 							<label>Direccion</label>
 							<input type="text" class="form-control input-sm" id="direccionU" name="direccionU">
-							<label>Email</label>
+							<label>Observaciones</label>
 							<input type="text" class="form-control input-sm" id="emailU" name="emailU">
 							<label>Telefono</label>
 							<input type="text" class="form-control input-sm" id="telefonoU" name="telefonoU">
@@ -102,14 +102,14 @@ if(isset($_SESSION['usuario'])){
 					success:function(r){
 						if(r==1){
 							$('#tablaClientesLoad').load("clientes/tablaClientes.php");
-							alertify.success("Eliminado con exito!!");
+							alertify.success("¡Eliminado con éxito!");
 						}else{
-							alertify.error("No se pudo eliminar :(");
+							alertify.error("No se pudo eliminar");
 						}
 					}
 				});
 			}, function(){ 
-				alertify.error('Cancelo !')
+				alertify.error('¡Operación cancelada!')
 			});
 		}
 	</script>

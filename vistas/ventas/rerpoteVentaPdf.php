@@ -123,8 +123,11 @@ $fechaFin  = date("Y-m-d", strtotime($_GET['fechaFin']));
 			<td><strong>Folio venta</strong></td>
 			<td><strong>Producto</strong></td>
 			<td><strong>Precio</strong></td>
-			<td><strong>Cantidad</strong></td>
+			<td><strong>Cantidad kg/pieza</strong></td>
 			<td><strong>Descripcion</strong></td>
+			<td><strong>Cliente</strong></td>
+			<td><strong>Fecha</strong></td>
+
 		</tr>
 
 		<?php
@@ -133,26 +136,45 @@ $fechaFin  = date("Y-m-d", strtotime($_GET['fechaFin']));
 							ve.id_cliente,
 							art.nombre,
 							art.precio,
-							art.descripcion
+							art.descripcion,
+
+							client.nombre,
+							client.apellido,
+							ve.cantidad,
+							ve.precio
 							from ventas  as ve 
 							inner join articulos as art
-							on ve.id_producto=art.id_producto 	where `fechaCompra` BETWEEN '$fechaInit' AND '$fechaFin' ORDER BY `id_venta` ASC";
+							on ve.id_producto=art.id_producto 
+							inner join clientes as client
+							on ve.id_cliente=client.id_cliente where `fechaCompra` BETWEEN '$fechaInit 00:00:00' AND '$fechaFin 23:59:59' ORDER BY `id_venta` ASC";
 
 
 		$result = mysqli_query($conexion, $sql);
 		$total = 0;
 		while ($mostrar = mysqli_fetch_row($result)) {
 		?>
-			
-				<tr>
-					<td><?php echo $mostrar[0]; ?></td>
 
-					<td><?php echo $mostrar[3]; ?></td>
-					<td><?php echo "$".number_format($mostrar[4], 2, '.', ',') ?></td>
-					<td>1</td>
-					<td><?php echo $mostrar[5]; ?></td>
-				</tr>
-		
+			<tr>
+				<td><?php echo $mostrar[0]; ?></td>
+
+				<td><?php echo $mostrar[3]; ?></td>
+				<td><?php echo "$" . number_format($mostrar[9], 2, '.', ',') ?></td>
+				<td><?php echo $mostrar[8]; ?></td>
+				<td><?php echo $mostrar[5]; ?></td>
+				<td><?php echo $mostrar[6] . " " . $mostrar[7]; ?></td>
+				<td>
+
+					<?php
+					date_default_timezone_set('America/Mexico_City');
+					$date = date_create($mostrar[1]);
+					echo date_format($date, "Y/m/d H:i:s");
+					?>
+
+				</td>
+
+
+			</tr>
+
 		<?php
 			$total = $total + $mostrar[4];
 		};

@@ -10,8 +10,9 @@ $obj = new ventas();
 
 $sql = "SELECT id_venta,
 				fechaCompra,
-				id_cliente 
-			from ventas group by id_venta";
+				id_cliente,
+				estatus
+			from ventas group by id_venta DESC";
 $result = mysqli_query($conexion, $sql);
 ?>
 
@@ -49,47 +50,60 @@ $result = mysqli_query($conexion, $sql);
 	<div class="col-sm-10">
 		<div class="table-responsive resultadoFiltro">
 			<table id="ventas-reportes" class="table table-hover table-condensed table-bordered" style="text-align: center;">
+
+
 				<caption><label>
 						<?php $total = mysqli_num_rows($result);
 						echo '<strong>Ventas, total: </strong> (' . $total . ')'; ?>
 					</label></caption>
-				<tr>
-					<td>Folio</td>
-					<td>Fecha</td>
-					<td>Cliente</td>
-					<td>Total de compra</td>
-					<td>Ticket</td>
-					<!-- <td>Reporte</td> -->
-				</tr>
-				<?php while ($ver = mysqli_fetch_row($result)) : ?>
+				<thead>
 					<tr>
-						<td><?php echo $ver[0] ?></td>
-						<td><?php echo $ver[1] ?></td>
-						<td>
-							<?php
-							if ($obj->nombreCliente($ver[2]) == " ") {
-								echo "S/C";
-							} else {
-								echo $obj->nombreCliente($ver[2]);
-							}
-							?>
-						</td>
-						<td>
-							<?php
-							echo "$" . $obj->obtenerTotal($ver[0]);
-							?>
-						</td>
-						<td>
-							<a href="../procesos/ventas/crearTicketPdf.php?idventa=<?php echo $ver[0] ?>" class="btn btn-danger btn-sm">
-								Ticket <span class="glyphicon glyphicon-list-alt"></span>
-							</a>
-						</td>
-						<!-- <td>
+						<td><strong>Folio</strong></td>
+						<td><strong>Fecha y hora</strong></td>
+						<td><strong>Cliente</strong></td>
+						<td><strong>Total de compra</strong></td>
+						<td><strong>Estatus</strong></td>
+
+						<td><strong>Ticket</strong></td>
+						<!-- <td>Reporte</td> -->
+					</tr>
+				</thead>
+				<?php while ($ver = mysqli_fetch_row($result)) : ?>
+
+					<tbody>
+						<tr>
+							<td><?php echo $ver[0] ?></td>
+							<td><?php echo $ver[1] ?></td>
+							<td>
+								<?php
+								if ($obj->nombreCliente($ver[2]) == " ") {
+									echo "S/C";
+								} else {
+									echo $obj->nombreCliente($ver[2]);
+								}
+								?>
+							</td>
+							<td>
+								<?php
+								echo "$" . $obj->obtenerTotal($ver[0]);
+								?>
+							</td>
+							<td><?php
+								$RES =  $ver[3] == 0 ?  '<span class="label label-warning">Pendiente</span>' : '<span class="label label-success">Pagado</span>';
+								echo $RES;
+								?> </td>
+							<td>
+								<a href="../procesos/ventas/crearTicketPdf.php?idventa=<?php echo $ver[0] ?>" class="btn btn-danger btn-sm">
+									Ticket <span class="glyphicon glyphicon-list-alt"></span>
+								</a>
+							</td>
+							<!-- <td>
 							<a href="../procesos/ventas/crearReportePdf.php?idventa=<?php echo $ver[0] . "&finicio=" . mktime(0, 0, 0, date("m") - 1, date("d"),   date("Y")) . "&ffinal=" . mktime(0, 0, 0, date("m"), date("d") + 1, date("Y")) ?>" class="btn btn-danger btn-sm">
 								Reporte <span class="glyphicon glyphicon-file"></span>
 							</a>
 						</td> -->
-					</tr>
+						</tr>
+					</tbody>
 				<?php endwhile; ?>
 			</table>
 		</div>

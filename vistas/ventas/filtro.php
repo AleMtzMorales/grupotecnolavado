@@ -27,7 +27,7 @@ $obj = new ventas();
 $fechaInit = date("Y-m-d", strtotime($_POST['f_ingreso']));
 $fechaFin = date("Y-m-d", strtotime($_POST['f_fin']));
 
-$sqlVentas = ("SELECT id_venta, fechaCompra, id_cliente  FROM ventas WHERE `fechaCompra` BETWEEN '$fechaInit' AND '$fechaFin' group by id_venta");
+$sqlVentas = ("SELECT id_venta, fechaCompra, id_cliente  FROM ventas WHERE `fechaCompra` BETWEEN '$fechaInit 00:00:00' AND '$fechaFin 23:59:59' group by id_venta DESC");
 // $sql = "SELECT id_venta,
 // 				fechaCompra,
 // 				id_cliente 
@@ -48,7 +48,7 @@ $query = mysqli_query($conexion, $sqlVentas);
     <thead>
         <tr>
             <td>Folio</td>
-            <td>Fecha</td>
+            <td>Fecha y hora</td>
             <td>Cliente</td>
             <td>Total de compra</td>
             <td>Ticket</td>
@@ -88,25 +88,9 @@ $query = mysqli_query($conexion, $sqlVentas);
             </tr>
             </tr>
         </tbody>
+
     <?php } ?>
+
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </table>

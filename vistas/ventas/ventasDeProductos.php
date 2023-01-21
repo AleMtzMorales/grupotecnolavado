@@ -23,7 +23,7 @@ $conexion=$c->conexion();
 					<option value="<?php echo $cliente[0] ?>"><?php echo $cliente[2]." ".$cliente[1] ?></option>
 				<?php endwhile; ?>
 			</select>
-			<label>Producto</label>
+			<label>Artículo</label>
 			<select class="form-control input-sm" id="productoVenta" name="productoVenta">
 				<option value="A">Selecciona</option>
 				<?php
@@ -37,12 +37,16 @@ $conexion=$c->conexion();
 					<option value="<?php echo $producto[0] ?>"><?php echo $producto[1] ?></option>
 				<?php endwhile; ?>
 			</select>
-			<label>Descripcion</label>
+			<label>Descripción</label>
 			<textarea readonly="" id="descripcionV" name="descripcionV" class="form-control input-sm"></textarea>
 			<label>Cantidad</label>
 			<input readonly="" type="text" class="form-control input-sm" id="cantidadV" name="cantidadV">
 			<label>Precio</label>
 			<input readonly="" type="text" class="form-control input-sm" id="precioV" name="precioV">
+			
+			<label>Cantidad recibida kg / pieza</label>
+			<input type="number" class="form-control input-sm" id="cantidadRecibida" name="cantidadRecibida">
+			
 			<p></p>
 			<span class="btn btn-primary" id="btnAgregaVenta">Agregar</span>
 			<span class="btn btn-danger" id="btnVaciarVentas">Vaciar ventas</span>

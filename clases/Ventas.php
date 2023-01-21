@@ -38,7 +38,12 @@ class ventas{
 		$c= new conectar();
 		$conexion=$c->conexion();
 
-		$fecha=date('Y-m-d');
+
+		date_default_timezone_set('America/Mexico_City');
+	
+
+
+		$fecha=date('Y-m-d H:i:s ');
 		$idventa=self::creaFolio();
 		$datos=$_SESSION['tablaComprasTemp'];
 		$idusuario=$_SESSION['iduser'];
@@ -52,12 +57,14 @@ class ventas{
 										id_producto,
 										id_usuario,
 										precio,
+										cantidad,
 										fechaCompra)
 							values ('$idventa',
-									'$d[5]',
+									'$d[6]',
 									'$d[0]',
 									'$idusuario',
 									'$d[3]',
+									'$d[4]',
 									'$fecha')";
 			$r=$r + $result=mysqli_query($conexion,$sql);
 		}
