@@ -8,9 +8,9 @@ $sql = "SELECT id_cliente,
 				nombre,
 				apellido,
 				direccion,
-				email,
+				observaciones,
 				telefono
-		from clientes";
+		FROM clientes ORDER BY id_cliente DESC";
 $result = mysqli_query($conexion, $sql);
 ?>
 
@@ -32,14 +32,14 @@ $result = mysqli_query($conexion, $sql);
 
 
 	<table class="table table-hover table-condensed table-bordered" style="text-align: center; ">
-		
-			<caption><label>Clientes</label></caption>
-			<thead>
+
+		<caption><label>Clientes</label></caption>
+		<thead>
 			<tr>
 				<td>Nombre</td>
 				<td>Apellido</td>
 				<td>Direccion</td>
-				<td>Email</td>
+				<td>Observaciones</td>
 				<td>Telefono</td>
 				<td>Editar</td>
 				<!-- <td>Eliminar</td> -->
@@ -59,7 +59,7 @@ $result = mysqli_query($conexion, $sql);
 					<td>
 						<span class="btn btn-warning btn-xs" data-toggle="modal" data-target="#abremodalClientesUpdate" onclick="agregaDatosCliente('<?php echo $ver[0]; ?>')">
 							<span class="glyphicon glyphicon-pencil"></span>
-						</span>
+						</span> 
 					</td>
 					<!-- <td>
 						<span class="btn btn-danger btn-xs" onclick="eliminarCliente('<?php echo $ver[0]; ?>')">
