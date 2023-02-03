@@ -48,9 +48,8 @@ create table clientes(
 				nombre varchar(200),
 				apellido varchar(200),
 				direccion varchar(200),
-				email varchar(200),
+				observaciones varchar(200),
 				telefono varchar(200),
-				rfc varchar(200),
 				primary key(id_cliente)
 					);
 -- Recuerda agregar el id de usuario por favor 
@@ -66,5 +65,16 @@ create table ventas(
 					);
 
 -- Valores para el campo estatus del la tabla ventas
---	0 -> Pendiente
---  1 -> Pagado
+--	0 -> Pendiente, paid
+--  1 -> Pagado,  pending
+
+
+-- Tabla de registros de venta con anticipo 
+create table anticipos(
+				id_anticipo int not null,
+				id_cliente int,
+				id_cliente int,
+				anticipo float,
+				fechaAnticipo DATETIME,
+				primary key(id_anticipo)
+					);
