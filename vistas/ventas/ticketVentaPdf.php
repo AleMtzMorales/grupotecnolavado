@@ -20,7 +20,8 @@ $sql = "SELECT ve.id_venta,
         art.precio,
         art.descripcion,
 		ve.precio,
-		ve.cantidad
+		ve.cantidad,
+		ve.estatus
 	from ventas  as ve 
 	inner join articulos as art
 	on ve.id_producto=art.id_producto
@@ -33,6 +34,16 @@ $ver = mysqli_fetch_row($result);
 $folio = $ver[0];
 $fecha = $ver[1];
 $idcliente = $ver[2];
+$estatusVenta = 1;
+
+$anticipo = 0;
+$faltante = 0;
+//validando estatus pagado
+if ($ver[8] == 0) {
+	$estatusVenta = 0;
+} else {
+	$estatusVenta = 1;
+}
 
 ?>
 
@@ -86,6 +97,10 @@ $idcliente = $ver[2];
 			background-color: #04AA6D;
 			color: white;
 		}
+
+		p {
+			line-height: 0.9
+		}
 	</style>
 
 </head>
@@ -106,14 +121,21 @@ $idcliente = $ver[2];
 		<p> Calle Miguel Hidalgo Centro Acatlan</p>
 
 		<p><strong>
-				Fecha y hora: <?php echo $fecha; ?>
-		</p></strong>
+				Fecha y hora: </strong>
+			<?php echo $fecha; ?>
+		</p>
+
 		<p><strong>
 				Folio: <?php echo $folio ?>
 		</p></strong>
 		<p><strong>
-				Cliente: <?php echo $objv->nombreCliente($idcliente); ?>
-		</p></strong>
+				Estatus:
+			</strong>
+			<?php echo $estatusVenta == 0 ? "Pediente" : "Pagado" ?>
+		</p>
+		<p><strong>
+				Cliente: </strong><?php echo $objv->nombreCliente($idcliente); ?>
+		</p>
 
 	</div>
 
@@ -124,7 +146,29 @@ $idcliente = $ver[2];
 			<td><strong>Precio</strong></td>
 		</tr>
 		<?php
-		$sql = "SELECT ve.id_venta,
+
+
+
+
+		if ($estatusVenta == 0) {
+			$sql = 	"SELECT ve.id_venta,
+							ve.fechaCompra,
+							ve.id_cliente,
+							art.nombre,
+							art.precio,
+							art.descripcion,
+							ve.precio,
+							ve.cantidad,
+							ve.estatus,
+							ant.anticipo
+						from ventas  as ve 
+						inner join articulos as art
+						on ve.id_producto=art.id_producto
+						and ve.id_venta='$idventa'
+						inner join anticipos as ant
+						on ve.id_venta=ant.id_venta";
+		} else {
+			$sql = "SELECT ve.id_venta,
 							ve.fechaCompra,
 							ve.id_cliente,
 							art.nombre,
@@ -136,24 +180,50 @@ $idcliente = $ver[2];
 						inner join articulos as art
 						on ve.id_producto=art.id_producto
 						and ve.id_venta='$idventa'";
+		}
 
 		$result = mysqli_query($conexion, $sql);
 		$total = 0;
+
 		while ($mostrar = mysqli_fetch_row($result)) {
 		?>
 			<tr>
 				<td><?php echo $mostrar[7]; ?></td>
 				<td><?php echo $mostrar[3]; ?></td>
-				<td><?php echo $mostrar[6] ?></td>
+				<td><?php echo "$" . number_format($mostrar[6],  2, '.', ','); ?></td>
 			</tr>
 		<?php
 			$total = $total + $mostrar[6];
+			$anticipo = array_key_exists(9, $mostrar) ? $mostrar[9] : 0;
 		}
 		?>
 		<tr>
-			<td>Total: <?php echo "$" . $total ?></td>
-			<td></td>
-			<td></td>
+			<td>Total: <?php echo "$" . number_format($total,  2, '.', ',') ?></td>
+			<td><?php
+				if ($estatusVenta == 0) {
+					echo "Anticipo: $" . number_format($anticipo,  2, '.', ',');
+				} else {
+					echo "";
+				}
+
+				?></td>
+			<td><?php
+
+				if ($estatusVenta == 0) {
+					echo "Restante: $" . number_format($total - $anticipo,  2, '.', ',');
+				} else {
+					echo "";
+				}
+
+
+				?></td>
+			<?php
+
+
+
+			?>
+
+
 
 		</tr>
 
