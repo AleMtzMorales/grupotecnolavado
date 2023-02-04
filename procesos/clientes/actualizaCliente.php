@@ -12,7 +12,7 @@ session_start();
 			$_POST['nombreU'],
 			$_POST['apellidosU'],
 			$_POST['direccionU'],
-			$_POST['emailU'],
+			$_POST['observacionesU'],
 			$_POST['telefonoU']
 				);
 

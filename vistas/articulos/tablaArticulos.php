@@ -42,7 +42,7 @@ $result = mysqli_query($conexion, $sql);
 				<td><?php echo $ver[0]; ?></td>
 				<td><?php echo $ver[1]; ?></td>
 				<td><?php echo $ver[2]; ?></td>
-				<td><?php echo $ver[3]; ?></td>
+				<td><?php echo "$".number_format((float)$ver[3], 2, '.', ','); ?></td>
 				<td>
 					<?php
 					$imgVer = explode("/", $ver[4]);

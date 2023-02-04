@@ -67,6 +67,7 @@ create table ventas(
 -- Valores para el campo estatus del la tabla ventas
 --	0 -> Pendiente, paid
 --  1 -> Pagado,  pending
+--  2 -> Liquidado,
 
 
 -- Tabla de registros de venta con anticipo 

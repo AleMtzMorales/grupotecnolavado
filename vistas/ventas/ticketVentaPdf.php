@@ -131,7 +131,18 @@ if ($ver[8] == 0) {
 		<p><strong>
 				Estatus:
 			</strong>
-			<?php echo $estatusVenta == 0 ? "Pediente" : "Pagado" ?>
+			<?php 
+			if( $estatusVenta == 0){
+				echo "Pediente"; 
+			}else if($estatusVenta ==2 ){
+				echo "Liquidado"; 
+			}else{
+				echo "Pagado"; 
+
+			}
+
+			
+			?>
 		</p>
 		<p><strong>
 				Cliente: </strong><?php echo $objv->nombreCliente($idcliente); ?>
