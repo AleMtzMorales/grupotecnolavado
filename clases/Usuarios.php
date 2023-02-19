@@ -4,7 +4,7 @@
 		public function registroUsuario($datos){
 			$c=new conectar();
 			$conexion=$c->conexion();
-
+			
 			$fecha=date('Y-m-d');
 
 			$sql="INSERT into usuarios (nombre,

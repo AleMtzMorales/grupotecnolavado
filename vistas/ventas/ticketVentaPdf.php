@@ -39,10 +39,8 @@ $estatusVenta = 1;
 $anticipo = 0;
 $faltante = 0;
 //validando estatus pagado
-if ($ver[8] == 0) {
-	$estatusVenta = 0;
-} else {
-	$estatusVenta = 1;
+if ($ver[8] != 0) {
+	$estatusVenta = $ver[8];
 }
 
 ?>
@@ -80,6 +78,7 @@ if ($ver[8] == 0) {
 		#report th {
 			border: 1px solid #ddd;
 			padding: 1px;
+			font-size: smaller;
 		}
 
 		#report tr:nth-child(even) {

@@ -51,7 +51,7 @@ class ventas
 
 		date_default_timezone_set('America/Mexico_City');
 
-		$fecha = date('Y-m-d H:i:s ');
+		$fecha = date('Y-m-d H:i:s');
 		$idventa = self::creaFolio();
 		$idAnticipo =  self::creaFolioForAnticipo();
 		$datos = $_SESSION['tablaComprasTemp'];
@@ -153,6 +153,14 @@ class ventas
 
 		return $ver[0] . " " . $ver[1];
 	}
+
+	/**
+	 * Obetener el total de una venta 
+	 * 
+	 * @param Integer $idventa Id de la venta 
+	 * 
+	 * @return Float Cantidad total de la venta
+	 */
 
 	public function obtenerTotal($idventa)
 	{

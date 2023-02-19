@@ -135,6 +135,7 @@ $total = 0; // Total para ventas pagadas
 		</tr>
 
 		<?php
+		//Consulta para obetener resgitros de ventas pagadas al momento de su creacion
 		$sql = "SELECT ve.id_venta,
 							ve.fechaCompra,
 							ve.id_cliente,
@@ -158,7 +159,7 @@ $total = 0; // Total para ventas pagadas
 		$result = mysqli_query($conexion, $sql);
 		// $resultForPendingSales = mysqli_query($conexion, $sqlForPendingSales);
 
-		while ($mostrar = mysqli_fetch_row($result)) {
+		while ($mostrar = mysqli_fetch_row($result)) {	
 		?>
 
 			<tr>
@@ -268,11 +269,10 @@ $total = 0; // Total para ventas pagadas
 
 					if ($mostrar[10] == 0) {
 						echo '<span class="label label-warning">Pendiente</span>';
-					} else if($mostrar[10] == 1) {
+					} else if ($mostrar[10] == 1) {
 						echo '<span class="label label-success">Pagado</span>';
-					}else{
+					} else {
 						echo '<span class="label label-success">Liquidado</span>';
-
 					}
 					?></td>
 
