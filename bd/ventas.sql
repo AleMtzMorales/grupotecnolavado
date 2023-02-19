@@ -74,8 +74,19 @@ create table ventas(
 create table anticipos(
 				id_anticipo int not null,
 				id_cliente int,
-				id_cliente int,
 				anticipo float,
 				fechaAnticipo DATETIME,
 				primary key(id_anticipo)
+					);
+
+					
+
+-- Tabla de registros de gastos
+create table egresos(
+				id_egreso int auto_increment,
+				id_usuario int not null,
+				totalEgreso float,
+				descripcion varchar(200),
+				fechaEgreso DATETIME,
+				primary key(id_egreso)
 					);
