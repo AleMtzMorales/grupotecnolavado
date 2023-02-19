@@ -47,10 +47,10 @@
             closeButton:false
         },
         glossary:{
-            title:'AlertifyJS',
-            ok: 'OK',
-            cancel: 'Cancel',
-            acccpt: 'Accept',
+            title:'¡Alerta!',
+            ok: 'Aceptar',
+            cancel: 'Cancelar',
+            acccpt: 'Aceptar',
             deny: 'Deny',
             confirm: 'Confirm',
             decline: 'Decline',

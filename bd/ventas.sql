@@ -35,7 +35,7 @@ create table articulos(
 				id_usuario int not null,
 				nombre varchar(50),
 				descripcion varchar(500),
-				cantidad int,
+				cantidad float,
 				precio float,
 				fechaCaptura date,
 				primary key(id_producto)
@@ -48,9 +48,8 @@ create table clientes(
 				nombre varchar(200),
 				apellido varchar(200),
 				direccion varchar(200),
-				email varchar(200),
+				observaciones varchar(200),
 				telefono varchar(200),
-				rfc varchar(200),
 				primary key(id_cliente)
 					);
 -- Recuerda agregar el id de usuario por favor 
@@ -60,5 +59,34 @@ create table ventas(
 				id_producto int,
 				id_usuario int,
 				precio float,
-				fechaCompra date
+				cantidad float,
+				fechaCompra DATETIME, 
+				estatus int
+					);
+
+-- Valores para el campo estatus del la tabla ventas
+--	0 -> Pendiente, paid
+--  1 -> Pagado,  pending
+--  2 -> Liquidado,
+
+
+-- Tabla de registros de venta con anticipo 
+create table anticipos(
+				id_anticipo int not null,
+				id_cliente int,
+				anticipo float,
+				fechaAnticipo DATETIME,
+				primary key(id_anticipo)
+					);
+
+					
+
+-- Tabla de registros de gastos
+create table egresos(
+				id_egreso int auto_increment,
+				id_usuario int not null,
+				totalEgreso float,
+				descripcion varchar(200),
+				fechaEgreso DATETIME,
+				primary key(id_egreso)
 					);

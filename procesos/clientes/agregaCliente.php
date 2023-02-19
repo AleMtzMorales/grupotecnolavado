@@ -11,7 +11,7 @@ session_start();
 			$_POST['nombre'],
 			$_POST['apellidos'],
 			$_POST['direccion'],
-			$_POST['email'],
+			$_POST['observaciones'],
 			$_POST['telefono']
 				);
 

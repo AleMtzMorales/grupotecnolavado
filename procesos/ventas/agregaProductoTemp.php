@@ -10,6 +10,8 @@
 	$descripcion=$_POST['descripcionV'];
 	$cantidad=$_POST['cantidadV'];
 	$precio=$_POST['precioV'];
+	$cantidadRecibida = $_POST['cantidadRecibida'];
+	$precio =  ($cantidadRecibida  / $cantidad) * $precio; 
 
 	$sql="SELECT nombre,apellido 
 			from clientes 
@@ -31,9 +33,8 @@
 				$nombreproducto."||".
 				$descripcion."||".
 				$precio."||".
+				$cantidadRecibida."||".
 				$ncliente."||".
 				$idcliente;
 
 	$_SESSION['tablaComprasTemp'][]=$articulo;
-
- ?>

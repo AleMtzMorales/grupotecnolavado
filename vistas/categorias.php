@@ -131,14 +131,14 @@ if(isset($_SESSION['usuario'])){
 					success:function(r){
 						if(r==1){
 							$('#tablaCategoriaLoad').load("categorias/tablaCategorias.php");
-							alertify.success("Eliminado con exito!!");
+							alertify.success("¡Eliminado con éxito!");
 						}else{
-							alertify.error("No se pudo eliminar :(");
+							alertify.error("No se pudo eliminar");
 						}
 					}
 				});
 			}, function(){ 
-				alertify.error('Cancelo !')
+				alertify.error('¡Operación cancelada!')
 			});
 		}
 	</script>

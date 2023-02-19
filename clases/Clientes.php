@@ -12,7 +12,7 @@
 										nombre,
 										apellido,
 										direccion,
-										email,
+										observaciones,
 										telefono)
 							values ('$idusuario',
 									'$datos[0]',
@@ -31,9 +31,9 @@
 							nombre,
 							apellido,
 							direccion,
-							email,
+							observaciones,
 							telefono
-				from clientes";
+				from clientes WHERE id_cliente=$idcliente";
 			$result=mysqli_query($conexion,$sql);
 			$ver=mysqli_fetch_row($result);
 
@@ -42,7 +42,7 @@
 					'nombre' => $ver[1],
 					'apellido' => $ver[2],
 					'direccion' => $ver[3],
-					'email' => $ver[4],
+					'observaciones' => $ver[4],
 					'telefono' => $ver[5]
 						);
 			return $datos;
@@ -54,7 +54,7 @@
 			$sql="UPDATE clientes set nombre='$datos[1]',
 										apellido='$datos[2]',
 										direccion='$datos[3]',
-										email='$datos[4]',
+										observaciones='$datos[4]',
 										telefono='$datos[5]' 
 								where id_cliente='$datos[0]'";
 			return mysqli_query($conexion,$sql);

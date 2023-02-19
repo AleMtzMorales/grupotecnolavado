@@ -49,11 +49,15 @@
          <?php 
        endif;
           ?>
-
-
-           <li><a href="clientes.php"><span class="glyphicon glyphicon-user"></span> Clientes</a>
+           <li>
+            <a href="clientes.php"><span class="glyphicon glyphicon-user"></span> Clientes</a>
           </li>
-          <li><a href="ventas.php"><span class="glyphicon glyphicon-usd"></span> Vender Articulo</a>
+          <li>
+            <a href="ventas.php"><span class="glyphicon glyphicon-usd"></span> Ventas</a>
+          </li>
+
+          <li>
+            <a href="egresos.php"><span class="glyphicon glyphicon-piggy-bank"></span> Egresos</a>
           </li>
           
           <li class="dropdown" >
