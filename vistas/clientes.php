@@ -23,12 +23,12 @@ if (isset($_SESSION['usuario'])) {
 						<input type="text" class="form-control input-sm" id="nombre" name="nombre">
 						<label>Apellido</label>
 						<input type="text" class="form-control input-sm" id="apellidos" name="apellidos">
-						<label>Direccion</label>
+						<label>Dirección</label>
 						<input type="text" class="form-control input-sm" id="direccion" name="direccion">
-						<label>Observacion</label>
+						<label>Observación</label>
 						<textarea type="text" rows="2" cols="60" maxlength="200" class="form-control input-sm" id="observaciones" name="observaciones">
 						</textarea>
-						<label>Telefono</label>
+						<label>Teléfono</label>
 						<input type="text" class="form-control input-sm" id="telefono" name="telefono">
 						<p></p>
 						<span class="btn btn-primary" id="btnAgregarCliente">Agregar</span>

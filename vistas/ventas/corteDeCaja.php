@@ -68,18 +68,18 @@ $resultEgresos = mysqli_query($conexion, $sqlEgresos);
 	<div class="col-sm-1"></div>
 	<section>
 		<div class="col-sm-10 text-center mt-5 mb-5">
-			<form action="../procesos/ventas/crearReportePdf.php" method="post" accept-charset="utf-8">
+			<form action="../procesos/ventas/crearCorteDeCajaPdf.php" method="post" accept-charset="utf-8">
 				<div class="row">
 					<div class="col-3 col-xs-6  col-md-3 col-sm-3 col-xlg-5 ">
-						<input id="fechaInicio" type="date" name="fechaIngreso" class="form-control" placeholder="Fecha de Inicio" required>
+						<input id="fechaInicioCorteDeCaja" type="date" name="fechaIngresoCorteDeCaja" class="form-control" placeholder="Fecha de Inicio" required>
 					</div>
 					<div class="col-3 col-xs-6 col-md-3 col-sm-3 col-xlg-5">
-						<input id="fin" type="date" name="fechaFin" class="form-control" placeholder="Fecha Final" required>
+						<input id="finCorteDeCaja" type="date" name="fechaFinCorteDeCaja" class="form-control" placeholder="Fecha Final" required>
 					</div>
 					<div style=" padding: 5px !important;" class="col-6 col-xs-10 col-md-6 col-sm-6 col-xlg-6">
 
-						<span style="background-color: #212121; color: white;" class="btn btn-dark mb-2 pt-2" id="filtro">Filtrar</span>
-						<!-- <button type="submit" class="btn btn-success mb-2 pt-2"><i class="bi bi-file-earmark-pdf-fill"></i> Descargar Reporte</button> -->
+						<span style="background-color: #212121; color: white;" class="btn btn-dark mb-2 pt-2" id="filtroCorteDeCaja">Filtrar</span>
+						<button type="submit" class="btn btn-danger mb-2 pt-2"><i class="bi bi-file-earmark-pdf-fill"></i> Descargar corte de caja</button>
 
 					</div>
 				</div>
@@ -87,7 +87,7 @@ $resultEgresos = mysqli_query($conexion, $sqlEgresos);
 		</div>
 
 		<div class="col-md-12 text-center mt-5">
-			<span id="loaderFiltro"> </span>
+			<span id="loaderFiltroCorteDeCaja"> </span>
 		</div>
 	</section>
 	<br>
@@ -352,13 +352,13 @@ $resultEgresos = mysqli_query($conexion, $sqlEgresos);
 
 
 		//FILTRANDO REGISTROS
-		$("#filtro").on("click", function(e) {
+		$("#filtroCorteDeCaja").on("click", function(e) {
 			e.preventDefault();
 
 			loaderF(true);
 
-			var f_ingreso = $("#fechaInicio").val();
-			var f_fin = $('input[name=fechaFin]').val();
+			var f_ingreso = $("#fechaInicioCorteDeCaja").val();
+			var f_fin = $('input[name=fechaFinCorteDeCaja]').val();
 			console.log(f_ingreso + '' + f_fin);
 			console.log("Fecha de ingreso: ", f_ingreso);
 			console.log("Fecha de fin: ", f_fin);
@@ -376,7 +376,7 @@ $resultEgresos = mysqli_query($conexion, $sqlEgresos);
 					loaderF(false);
 				});
 			} else {
-				$("#loaderFiltro").html('<p style="color:red;  font-weight:bold;">Debe seleccionar ambas fechas</p>');
+				$("#loaderFiltroCorteDeCaja").html('<p style="color:red;  font-weight:bold;">Debe seleccionar ambas fechas</p>');
 			}
 		});
 
@@ -384,10 +384,10 @@ $resultEgresos = mysqli_query($conexion, $sqlEgresos);
 		function loaderF(statusLoader) {
 			console.log(statusLoader);
 			if (statusLoader) {
-				$("#loaderFiltro").show();
-				$("#loaderFiltro").html('<img class="img-fluid" src="img/cargando.svg" style="left:50%; right: 50%; width:50px;">');
+				$("#loaderFiltroCorteDeCaja").show();
+				$("#loaderFiltroCorteDeCaja").html('<img class="img-fluid" src="img/cargando.svg" style="left:50%; right: 50%; width:50px;">');
 			} else {
-				$("#loaderFiltro").hide();
+				$("#loaderFiltroCorteDeCaja").hide();
 			}
 		}
 	});

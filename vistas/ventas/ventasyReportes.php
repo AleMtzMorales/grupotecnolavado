@@ -30,10 +30,10 @@ $result = mysqli_query($conexion, $sql);
 					<div class="col-3 col-xs-6 col-md-3 col-sm-3 col-xlg-5">
 						<input id="fin" type="date" name="fechaFin" class="form-control" placeholder="Fecha Final" required>
 					</div>
-					<div class="col-6 col-xs-10 col-md-6 col-sm-6 col-xlg-6">
+					<div style="padding: 5px !important;" class="col-6 col-xs-10 col-md-6 col-sm-6 col-xlg-6">
 
 						<span style="background-color: #212121; color: white;" class="btn btn-dark mb-2 pt-2" id="filtro">Filtrar</span>
-						<button type="submit" class="btn btn-success mb-2 pt-2"><i class="bi bi-file-earmark-pdf-fill"></i> Descargar Reporte</button>
+						<button type="submit" class="btn btn-success mb-2 pt-2"><i class="bi bi-file-earmark-pdf-fill"></i> Descargar reporte</button>
 
 					</div>
 				</div>
@@ -58,8 +58,8 @@ $result = mysqli_query($conexion, $sql);
 				<div class="row">
 					<div class="col-sm-8">
 					</div>
-					<div class="col-sm-4">
-						<input class="form-control" id="myInputSearch" type="text" placeholder="Buscar venta por folio...">
+					<div style=" padding: 5px !important;" s class="col-sm-4">
+						<input class="form-control" id="myInputSearch" type="text" placeholder="Buscar venta por cliente...">
 					</div>
 				</div>
 			</div>
@@ -140,7 +140,7 @@ $result = mysqli_query($conexion, $sql);
 									<?php
 
 									echo '
-	<span class="btn btn-primary btn-sm" data-toggle="modal" data-target="#openModalSeePay" onclick="saldarDeudaPendiente(',  $ver[0], ",", $ver[2], ",", $obj->obtenerTotal($ver[0]), ",", $obj->obtenerAnticipo($ver[0]), ')" ">
+	<span class="btn btn-primary btn-sm" data-toggle="modal" data-target="#openModalSeePayments" onclick="agregaDatosAnticipos(',  $ver[0], ',',  $ver[3], ')" ">
 	Ver pagos <span class="bi bi-clock-history"></span></span>';
 									?>
 								</td>
@@ -199,7 +199,7 @@ $result = mysqli_query($conexion, $sql);
 	</div>
 
 	<!-- Modal par ver historial de pagos de las ventas-->
-	<div class="modal fade" id="openModalSeePay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" id="openModalSeePayments" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -207,11 +207,11 @@ $result = mysqli_query($conexion, $sql);
 					<h4 class="modal-title" id="myModalLabel">Historial de pagos</h4>
 				</div>
 				<div class="modal-body">
-					<form id="frmClientesU">
-					
+					<!-- <form id="frmClientesU">
 
+					</form> -->
 
-					</form>
+					<div id="tablaHistorialPagos"></div>
 
 					<!-- <label id="labelConfirm">¿Está seguro saldar la venta por el valor antes mencionado?</label> -->
 				</div>
@@ -277,14 +277,18 @@ $result = mysqli_query($conexion, $sql);
 		$(document).ready(function() {
 			$("#myInputSearch").on("keyup", function() {
 				var value = $(this).val().toLowerCase();
-				$("#ventas-reportes-tbody tr td:nth-child(1)").filter(function() {
+				$("#ventas-reportes-tbody tr").filter(function() {
 
 
-					$(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 				});
 
 			});
+
+
+
 		});
+
 
 
 		$(document).ready(function() {
@@ -334,6 +338,35 @@ $result = mysqli_query($conexion, $sql);
 			console.log("Este es el id del cliente ", idcliente);
 			console.log("Este es el id de la  venta  ", idventa);
 			console.log("Este es el anticipo es de  ", anticipo);
+
+
+		}
+
+
+		function agregaDatosAnticipos(idanticipo, statusVenta) {
+
+			if (statusVenta == 1) {
+				$('#tablaHistorialPagos').empty();
+				$('#tablaHistorialPagos').html('<div class="alert alert-success"><strong>¡Sin registros!</strong> esto se debe a que el pago se hizo completamente y en una exhibición.</div>');
+
+			} else {
+				$.ajax({
+					type: "POST",
+					data: "idanticipo=" + idanticipo,
+					url: "../vistas/anticipos/tablaAnticipos.php",
+					success: function(r) {
+						// dato = jQuery.parseJSON(r);
+						// $('#idclienteU').val(dato['id_cliente']);
+						// $('#nombreU').val(dato['nombre']);
+						// $('#apellidosU').val(dato['apellido']);
+						// $('#direccionU').val(dato['direccion']);
+						// $('#observacionesU').val(dato['observaciones']);
+						// $('#telefonoU').val(dato['telefono']);
+						$('#tablaHistorialPagos').empty();
+						$('#tablaHistorialPagos').html(r);
+					}
+				});
+			}
 
 
 		}

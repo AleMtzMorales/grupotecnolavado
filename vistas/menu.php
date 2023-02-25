@@ -1,11 +1,12 @@
-
 <?php require_once "dependencias.php" ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <title></title>
 </head>
+
 <body>
 
   <!-- Begin Navbar -->
@@ -19,7 +20,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="" href="inicio.php"><img class="img-responsive logo img-thumbnail align-top" src="../img/imagen23.jpeg" alt="" width="120px" height="50px"></a>
+          <a class="" href=""><img class="img-responsive logo img-thumbnail align-top" src="../img/imagen23.jpeg" alt="" width="120px" height="50px"></a>
         </div>
 
 
@@ -27,64 +28,67 @@
 
           <ul class="nav navbar-nav navbar-right">
 
-            <li class="active"><a href="inicio.php"><span class="glyphicon glyphicon-home"></span> Inicio</a>
+            <!-- <li class="active"><a href="inicio.php"><span class="glyphicon glyphicon-home"></span> Inicio</a>
+            </li> -->
+
+
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Administrar Ropa <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="categorias.php">Categorias</a></li>
+                <li class="active"><a href="articulos.php">Artículos</a></li>
+              </ul>
             </li>
 
-            
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Administrar Ropa <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="categorias.php">Categorias</a></li>
-              <li><a href="articulos.php">Articulos</a></li>
-            </ul>
-          </li>
 
-
-        <?php
-        if($_SESSION['usuario']=="admin"):
-         ?>
-           <li><a href="usuarios.php"><span class="glyphicon glyphicon-user"></span> Administrar usuarios</a>
+            <?php
+            if ($_SESSION['usuario'] == "admin") :
+            ?>
+              <li><a href="usuarios.php"><span class="glyphicon glyphicon-user"></span> Administrar usuarios</a>
+              </li>
+            <?php
+            endif;
+            ?>
+            <li>
+              <a href="clientes.php"><span class="glyphicon glyphicon-user"></span> Clientes</a>
             </li>
-         <?php 
-       endif;
-          ?>
-           <li>
-            <a href="clientes.php"><span class="glyphicon glyphicon-user"></span> Clientes</a>
-          </li>
-          <li>
-            <a href="ventas.php"><span class="glyphicon glyphicon-usd"></span> Ventas</a>
-          </li>
+            <li>
+              <a href="ventas.php"><span class="glyphicon glyphicon-usd"></span> Ventas</a>
+            </li>
 
-          <li>
-            <a href="egresos.php"><span class="glyphicon glyphicon-piggy-bank"></span> Egresos</a>
-          </li>
-          
-          <li class="dropdown" >
-            <a href="#" style="color: red"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Usuario: <?php echo $_SESSION['usuario']; ?>  <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li> <a style="color: red" href="../procesos/salir.php"><span class="glyphicon glyphicon-off"></span> Salir</a></li>
-  
-            </ul>
-          </li>
-        </ul>
+            <li>
+              <a href="egresos.php"><span class="glyphicon glyphicon-piggy-bank"></span> Egresos</a>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" style="color: red" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Usuario: <?php echo $_SESSION['usuario']; ?> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li> <a style="color: red" href="../procesos/salir.php"><span class="glyphicon glyphicon-off"></span> Salir</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
       </div>
-      <!--/.nav-collapse -->
+      <!--/.contatiner -->
     </div>
-    <!--/.contatiner -->
   </div>
-</div>
 
-<!-- Main jumbotron for a primary marketing message or call to action -->
-
+  <!-- Main jumbotron for a primary marketing message or call to action -->
 
 
 
 
-<!-- /container -->        
+
+  <!-- /container -->
+
+
 
 
 </body>
+
 </html>
 
 <script type="text/javascript">
