@@ -81,6 +81,8 @@ $result = mysqli_query($conexion, $sql);
 							<td><strong>Estatus</strong></td>
 							<td><strong>Ticket</strong></td>
 							<td><strong>Historial de pagos</strong></td>
+							<td><strong>Prendas</strong></td>
+
 						</tr>
 					</thead>
 					<?php while ($ver = mysqli_fetch_row($result)) : ?>
@@ -144,6 +146,27 @@ $result = mysqli_query($conexion, $sql);
 	Ver pagos <span class="bi bi-clock-history"></span></span>';
 									?>
 								</td>
+
+
+
+								<td>
+									<!-- <a href="../procesos/ventas/crearReportePdf.php?idventa=<?php echo $ver[0] . "&finicio=" . mktime(0, 0, 0, date("m") - 1, date("d"),   date("Y")) . "&ffinal=" . mktime(0, 0, 0, date("m"), date("d") + 1, date("Y")) ?>" class="btn btn-primary btn-sm">
+										Ver pagos<span class="bi bi-clock-history"></span>
+									</a> -->
+
+							
+									<?php
+
+									echo '
+	<span class="btn btn-link btn-sm" data-toggle="modal" data-target="#openModalTablaVerPrendas" onclick="agregaDatosPrendas(',  $ver[0], ',',  $ver[3], ')" ">
+	Ver prendas <span class="bi bi bi-eye"></span></span>';
+									?>
+								</td>
+
+
+
+
+
 							</tr>
 						</tbody>
 					<?php endwhile; ?>
@@ -212,6 +235,36 @@ $result = mysqli_query($conexion, $sql);
 					</form> -->
 
 					<div id="tablaHistorialPagos"></div>
+
+					<!-- <label id="labelConfirm">¿Está seguro saldar la venta por el valor antes mencionado?</label> -->
+				</div>
+				<div class="modal-footer">
+					<!-- <button id="btnSaldarDeudaPendiente" type="button" class="btn btn-primary" data-dismiss="modal">Saldar venta</button> -->
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- Modal par ver listado prendas -->
+	<div class="modal fade" id="openModalTablaVerPrendas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Listado de prendas</h4>
+				</div>
+				<div class="modal-body" style="padding: 1rem;">
+					<!-- <form id="frmClientesU">
+
+					</form> -->
+
+					<div id="tablaVerPrendas" >
+
+					</div>
 
 					<!-- <label id="labelConfirm">¿Está seguro saldar la venta por el valor antes mencionado?</label> -->
 				</div>
@@ -315,6 +368,8 @@ $result = mysqli_query($conexion, $sql);
 
 
 
+
+
 		})
 
 		function saldarDeudaPendiente(idventa, idcliente, totalCompra, anticipo) {
@@ -367,6 +422,30 @@ $result = mysqli_query($conexion, $sql);
 					}
 				});
 			}
+
+		}
+
+
+		function agregaDatosPrendas(idventa, statusVenta) {
+
+		
+				$.ajax({
+					type: "POST",
+					data: "idventa=" + idventa,
+					url: "../vistas/prendas/tablaPrendas.php",
+					success: function(r) {
+						// dato = jQuery.parseJSON(r);
+						// $('#idclienteU').val(dato['id_cliente']);
+						// $('#nombreU').val(dato['nombre']);
+						// $('#apellidosU').val(dato['apellido']);
+						// $('#direccionU').val(dato['direccion']);
+						// $('#observacionesU').val(dato['observaciones']);
+						// $('#telefonoU').val(dato['telefono']);
+						$('#tablaVerPrendas').empty();
+						$('#tablaVerPrendas').html(r);
+					}
+				});
+	
 
 
 		}
