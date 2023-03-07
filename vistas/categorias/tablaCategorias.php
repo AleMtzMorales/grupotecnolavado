@@ -10,10 +10,10 @@ $result = mysqli_query($conexion, $sql);
 
 
 <table class="table table-hover table-condensed table-bordered" style="text-align: center;">
-	<caption><label>Categorias</label></caption>
+	<caption><label>Categorías</label></caption>
 	<thead>
 		<tr>
-			<td>Categoria</td>
+			<td>Categoría</td>
 			<td>Editar</td>
 			<td>Eliminar</td>
 		</tr>
