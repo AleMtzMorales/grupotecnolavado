@@ -23,7 +23,7 @@ $result = mysqli_query($conexion, $sql);
 <?php
 
 if (mysqli_num_rows($result) <= 0) {
-	echo '<div class="alert alert-warning" role="alert">No existe ningun registro con el folio ingresado [' . $idproducto . ']</div>';
+	echo '<div class="alert alert-warning" role="alert">No existe ningún registro con el folio ingresado [' . $idproducto . ']</div>';
 } else {
 ?>
 	<table id="tablaPrendasFor" class="table table-hover table-condensed table-bordered table-responsive" style="text-align: center;">

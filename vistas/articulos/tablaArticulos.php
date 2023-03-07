@@ -30,11 +30,10 @@ $result = mysqli_query($conexion, $sql);
 		<div class="col-sm-4">
 			<div class="row">
 				<div class="col-sm-8">
-					<input type="number" id="inputForFolio" class="form-control" type="text" placeholder="Buscar cliente...">
+					<input type="number" id="inputForFolio" class="form-control" type="text" placeholder="Folio">
 				</div>
 				<div class="col-sm-4">
-
-					<button id="btnSearchByFolio" class="btn btn-primary">Buscar...</button>
+					<button id="btnSearchByFolio" class="btn btn-primary">Buscar</button>
 				</div>
 			</div>
 
