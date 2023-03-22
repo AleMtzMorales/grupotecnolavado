@@ -122,7 +122,7 @@ body{
 
 .imagen-light{
     position: fixed;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -258,7 +258,8 @@ footer{
     font-weight: 200;
     margin-bottom: 30px;
     font-weight: 500;
-   
+   padding-left: 3rem !important;
+   padding-right: 3rem !important;
    
 }
 .subtitulo2{
