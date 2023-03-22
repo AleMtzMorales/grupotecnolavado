@@ -74,6 +74,7 @@ create table ventas(
 create table anticipos(
 				id_anticipo int not null,
 				id_cliente int,
+				id_venta int,
 				anticipo float,
 				fechaAnticipo DATETIME,
 				primary key(id_anticipo)

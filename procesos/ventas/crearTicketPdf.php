@@ -1,8 +1,12 @@
 <?php
 // Cargamos la librería dompdf que hemos instalado en la carpeta dompdf
 require_once '../../librerias/dompdf/autoload.inc.php';
-use Dompdf\Dompdf;
+require_once "../../clases/Constants.php";
 
+$myObjConstants = new Constants();
+$host = $myObjConstants->getHost(); 
+
+use Dompdf\Dompdf;
 /*En esta linea de código mandamos a llamar las opciones de dpmpdf para 
 usarlas al momento de usar imágenes */
 use Dompdf\Options;
@@ -24,7 +28,7 @@ function file_get_contents_curl($url) {
     return $data;
 }
 
- $html=file_get_contents("http://localhost/ventas/vistas/ventas/ticketVentaPdf.php?idventa=".$id);
+ $html=file_get_contents($host."/vistas/ventas/ticketVentaPdf.php?idventa=".$id);
 
 //Aquí se crea el objeto a utilizar
 $options = new Options();

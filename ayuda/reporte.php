@@ -1,6 +1,12 @@
 <?php
 // Cargamos la librería dompdf que hemos instalado en la carpeta dompdf
 require_once 'dompdf/autoload.inc.php';
+require_once "../../clases/Constants.php";
+
+$myObjConstants = new Constants();
+$host = $myObjConstants->getHost(); 
+
+
 use Dompdf\Dompdf;
 
 $id=$_GET['id'];
@@ -18,7 +24,7 @@ function file_get_contents_curl($url) {
     return $data;
 }
 
- $html=file_get_contents("http://localhost/pruebas/pdf/mostrar.php?id=".$id);
+ $html=file_get_contents($host."pruebas/pdf/mostrar.php?id=".$id);
 
 
  

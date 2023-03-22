@@ -1,6 +1,12 @@
 <?php
 // Cargamos la librería dompdf que hemos instalado en la carpeta dompdf
 require_once '../../librerias/dompdf/autoload.inc.php';
+require_once "../../clases/Constants.php";
+
+$myObjConstants = new Constants();
+$host = $myObjConstants->getHost(); 
+
+
 use Dompdf\Dompdf;
 
 /*En esta linea de código mandamos a llamar las opciones de dpmpdf para 
@@ -28,7 +34,7 @@ function file_get_contents_curl($url) {
     return $data;
 }
 
- $html=file_get_contents("http://localhost/ventas/vistas/ventas/corteDeCajaPdf.php?fechaIngresoCorteDeCaja=".$fechaInit."&fechaFinCorteDeCaja=".$fechaFin);
+ $html=file_get_contents($host."/vistas/ventas/corteDeCajaPdf.php?fechaIngresoCorteDeCaja=".$fechaInit."&fechaFinCorteDeCaja=".$fechaFin);
 
 //Aquí se crea el objeto a utilizar
 $options = new Options();
