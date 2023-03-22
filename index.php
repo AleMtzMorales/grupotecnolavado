@@ -182,9 +182,9 @@
 
         <div class="service3">
           <h3 class="n-service3"><span class=""></span>Contacto</h3>
-          <a href="tel:+529531294506" target="_blank">9531294506</a>
+          <a href="tel:+529535416217" target="_blank">9535416217</a>
           <div style="padding: 1rem;"></div>
-          <a class="btn btn-success btn-lg" href="https://api.whatsapp.com/send?phone=+529531294506" target="_blank">
+          <a class="btn btn-success btn-lg" href="https://api.whatsapp.com/send?phone=529535416217" target="_blank">
             <i class='bx bx-whatsapp '></i>
             Whatsapp</a>
         </div>
