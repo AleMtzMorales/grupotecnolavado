@@ -100,7 +100,7 @@
   </div>
   </div>
   </div>
-  
+
   <main>
     <section class="services contenedor" id="servicio">
       <h2 class="subtitulo">PRUEBA NUESTROS SERVICIOS</h2>
@@ -167,7 +167,7 @@
     </div>
 
   </section>
-  <section class="services contenedor1" id="servicio1">
+  <section class="services contenedor1" style="text-align: center !important;" id="servicio1">
     <h2 class="subtitulo1">TENEMOS SERVICIO EN ACATLÁN: BARRIO DE SAN MIGUEL, CALLE DE LA LIBERTAD 203</h2>
     <div class="contenedor-servicio1">
       <div class="checklist-servicio1">
@@ -179,12 +179,21 @@
           <h3 class="n-service1"><span class=""></span>Horarios</h3>
           <p> Lunes – Domingo: 8:00 AM a 7:00 PM.</p>
         </div>
+
+        <div class="service1">
+          <h3 class="n-service1"><span class=""></span>Contacto</h3>
+          <a href="tel:+529531294506" target="_blank">9531294506</a>
+          <div style="padding: 1rem;"></div>
+          <a class="btn btn-success btn-lg" href="https://api.whatsapp.com/send?phone=+529531294506" target="_blank">
+          <i class='bx bxl-whatsapp '></i>  
+          Whatsapp</a>
+        </div>
       </div>
     </div>
   </section>
   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d947.5265927945975!2d-98.0522926!3d18.205035!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cf4135eff7d029%3A0xb979ea9eda4c64e!2sgrupo%20tecnolavado!5e0!3m2!1ses!2smx!4v1679174743820!5m2!1ses!2smx" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 
-  
+
   <footer id="footer">
     <div class="contenedor footer-content">
       <div class="contact-us">
