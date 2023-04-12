@@ -20,7 +20,7 @@ if (isset($_SESSION['usuario'])) {
 				<div class="col-sm-4">
 					<form id="frmClientes">
 						<label>Nombre</label>
-						<input type="text" class="form-control input-sm" id="nombre" name="nombre">
+						<input type="text" class="form-control input-sm" id="nombre" name="nombre" required>
 						<label>Apellido</label>
 						<input type="text" class="form-control input-sm" id="apellidos" name="apellidos">
 						<label>Dirección</label>
@@ -125,10 +125,12 @@ if (isset($_SESSION['usuario'])) {
 
 			$('#btnAgregarCliente').click(function() {
 
-				vacios = validarFormVacio('frmClientes');
+				vacios = 0; //validarFormVacio('frmClientes');
 
-				if (vacios > 0) {
-					alertify.alert("Debes llenar todos los campos!!");
+				let campoNombre = $('#nombre').val();
+
+				if (campoNombre == "" || campoNombre == null || campoNombre == undefined) {
+					alertify.alert("El nombre del cliente es requerido");
 					return false;
 				}
 
@@ -156,6 +158,16 @@ if (isset($_SESSION['usuario'])) {
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#btnAgregarClienteU').click(function() {
+				vacios = 0; //validarFormVacio('frmClientes');
+
+				let campoNombre = $('#nombreU').val();
+
+				if (campoNombre == "" || campoNombre == null || campoNombre == undefined) {
+					alertify.alert("El nombre del cliente es requerido");
+					return false;
+				}
+
+
 				datos = $('#frmClientesU').serialize();
 
 				$.ajax({

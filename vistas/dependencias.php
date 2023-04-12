@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="../librerias/select2/css/select2.css">
 <link rel="stylesheet" type="text/css" href="../css/menu.css">
+<link rel="icon" type="image/png" href="../img/logoChico.png" />
 
 <script src="../librerias/jquery-3.2.1.min.js"></script>
 <script src="../librerias/alertifyjs/alertify.js"></script>

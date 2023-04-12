@@ -1,23 +1,25 @@
-<?php 
+<?php
 session_start();
-if(isset($_SESSION['usuario'])){
+if (isset($_SESSION['usuario'])) {
 
-	?>
+?>
 
 
 	<!DOCTYPE html>
 	<html>
+
 	<head>
 		<title>articulos</title>
 		<?php require_once "menu.php"; ?>
-		<?php require_once "../clases/Conexion.php"; 
-		$c= new conectar();
-		$conexion=$c->conexion();
-		$sql="SELECT id_categoria,nombreCategoria
+		<?php require_once "../clases/Conexion.php";
+		$c = new conectar();
+		$conexion = $c->conexion();
+		$sql = "SELECT id_categoria,nombreCategoria
 		from categorias";
-		$result=mysqli_query($conexion,$sql);
+		$result = mysqli_query($conexion, $sql);
 		?>
 	</head>
+
 	<body>
 		<div class="container">
 			<h1>Registro de Ropa</h1>
@@ -27,7 +29,7 @@ if(isset($_SESSION['usuario'])){
 						<label>Categoria</label>
 						<select class="form-control input-sm" id="categoriaSelect" name="categoriaSelect">
 							<option value="A">Selecciona Categoria</option>
-							<?php while($ver=mysqli_fetch_row($result)): ?>
+							<?php while ($ver = mysqli_fetch_row($result)) : ?>
 								<option value="<?php echo $ver[0] ?>"><?php echo $ver[1]; ?></option>
 							<?php endwhile; ?>
 						</select>
@@ -36,9 +38,9 @@ if(isset($_SESSION['usuario'])){
 						<label>Descripcion</label>
 						<input type="text" class="form-control input-sm" id="descripcion" name="descripcion">
 						<label>Cantidad kg / piezas</label>
-						<input type="number" class="form-control input-sm" id="cantidad" name="cantidad">
+						<input type="number" class="form-control input-sm" id="cantidad" name="cantidad" min="1">
 						<label>Precio</label>
-						<input type="number" class="form-control input-sm" id="precio" name="precio">
+						<input type="number" class="form-control input-sm" id="precio" name="precio" min="1">
 						<label>Imagen</label>
 						<input type="file" id="imagen" name="imagen">
 						<p></p>
@@ -52,7 +54,7 @@ if(isset($_SESSION['usuario'])){
 		</div>
 
 		<!-- Button trigger modal -->
-		
+
 		<!-- Modal -->
 		<div class="modal fade" id="abremodalUpdateArticulo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog modal-sm" role="document">
@@ -67,24 +69,24 @@ if(isset($_SESSION['usuario'])){
 							<label>Categoria</label>
 							<select class="form-control input-sm" id="categoriaSelectU" name="categoriaSelectU">
 								<option value="A">Selecciona Categoria</option>
-								<?php 
-								$sql="SELECT id_categoria,nombreCategoria
+								<?php
+								$sql = "SELECT id_categoria,nombreCategoria
 								from categorias";
-								$result=mysqli_query($conexion,$sql);
+								$result = mysqli_query($conexion, $sql);
 								?>
-								<?php while($ver=mysqli_fetch_row($result)): ?>
+								<?php while ($ver = mysqli_fetch_row($result)) : ?>
 									<option value="<?php echo $ver[0] ?>"><?php echo $ver[1]; ?></option>
 								<?php endwhile; ?>
 							</select>
 							<label>Nombre</label>
 							<input type="text" class="form-control input-sm" id="nombreU" name="nombreU">
 							<label>Descripcion</label>
-							<input type="text" class="form-control input-sm" id="descripcionU" name="descripcionU">
+							<input type="text" class="form-control input-sm" id="descripcionU" name="descripcionU" min="1">
 							<label>Cantidad kg / piezas</label>
-							<input type="text" class="form-control input-sm" id="cantidadU" name="cantidadU">
+							<input type="text" class="form-control input-sm" id="cantidadU" name="cantidadU" min="1" min>
 							<label>Precio</label>
 							<input type="text" class="form-control input-sm" id="precioU" name="precioU">
-							
+
 						</form>
 					</div>
 					<div class="modal-footer">
@@ -96,17 +98,18 @@ if(isset($_SESSION['usuario'])){
 		</div>
 
 	</body>
+
 	</html>
 
 	<script type="text/javascript">
-		function agregaDatosArticulo(idarticulo){
+		function agregaDatosArticulo(idarticulo) {
 			$.ajax({
-				type:"POST",
-				data:"idart=" + idarticulo,
-				url:"../procesos/articulos/obtenDatosArticulo.php",
-				success:function(r){
-					
-					dato=jQuery.parseJSON(r);
+				type: "POST",
+				data: "idart=" + idarticulo,
+				url: "../procesos/articulos/obtenDatosArticulo.php",
+				success: function(r) {
+
+					dato = jQuery.parseJSON(r);
 					$('#idArticulo').val(dato['id_producto']);
 					$('#categoriaSelectU').val(dato['id_categoria']);
 					$('#nombreU').val(dato['nombre']);
@@ -118,41 +121,41 @@ if(isset($_SESSION['usuario'])){
 			});
 		}
 
-		function eliminaArticulo(idArticulo){
-			alertify.confirm('¿Desea eliminar este articulo?', function(){ 
+		function eliminaArticulo(idArticulo) {
+			alertify.confirm('¿Desea eliminar este articulo?', function() {
 				$.ajax({
-					type:"POST",
-					data:"idarticulo=" + idArticulo,
-					url:"../procesos/articulos/eliminarArticulo.php",
-					success:function(r){
-						if(r==1){
+					type: "POST",
+					data: "idarticulo=" + idArticulo,
+					url: "../procesos/articulos/eliminarArticulo.php",
+					success: function(r) {
+						if (r == 1) {
 							$('#tablaArticulosLoad').load("articulos/tablaArticulos.php");
 							alertify.success("¡Eliminado con éxito!");
-						}else{
+						} else {
 							alertify.error("No se pudo eliminar");
 						}
 					}
 				});
-			}, function(){ 
+			}, function() {
 				alertify.error('¡Operación cancelada!')
 			});
 		}
 	</script>
 
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#btnActualizaarticulo').click(function(){
+		$(document).ready(function() {
+			$('#btnActualizaarticulo').click(function() {
 
-				datos=$('#frmArticulosU').serialize();
+				datos = $('#frmArticulosU').serialize();
 				$.ajax({
-					type:"POST",
-					data:datos,
-					url:"../procesos/articulos/actualizaArticulos.php",
-					success:function(r){
-						if(r==1){
+					type: "POST",
+					data: datos,
+					url: "../procesos/articulos/actualizaArticulos.php",
+					success: function(r) {
+						if (r == 1) {
 							$('#tablaArticulosLoad').load("articulos/tablaArticulos.php");
 							alertify.success("Actualizado con exito :D");
-						}else{
+						} else {
 							alertify.error("Error al actualizar :(");
 						}
 					}
@@ -162,17 +165,49 @@ if(isset($_SESSION['usuario'])){
 	</script>
 
 	<script type="text/javascript">
-		$(document).ready(function(){
+		$(document).ready(function() {
 			$('#tablaArticulosLoad').load("articulos/tablaArticulos.php");
 
-			$('#btnAgregaArticulo').click(function(){
+			$('#btnAgregaArticulo').click(function() {
 
-				vacios=validarFormVacio('frmArticulos');
+				// vacios = validarFormVacio('frmArticulos');
+				vacios = 0; //validarFormVacio('frmClientes');
 
-				if(vacios > 0){
-					alertify.alert("Debes llenar todos los campos!!");
+
+
+
+
+				let campoNombre = $('#nombre').val();
+				let campoCantidad = $('#cantidad').val();
+				let campoPrecio = $('#precio').val();
+
+				if (campoNombre == "") {
+					alertify.alert("El nombre del artículo es requerido");
 					return false;
 				}
+
+				if (campoCantidad == "") {
+					alertify.alert("La cantidad es requerida");
+					return false;
+				} else if (campoCantidad <= 0 || campoCantidad == "0") {
+					alertify.alert("La cantidad no puede ser 0");
+					return false;
+				}
+				if (campoPrecio == "") {
+					alertify.alert("El precio es requerido");
+					return false;
+				} else if (campoCantidad <= 0 || campoCantidad == "0") {
+					alertify.alert("El precio no puede ser 0");
+					return false;
+				}
+
+				if (vacios > 0) {
+					alertify.alert("Debes llenar todos los campos");
+					return false;
+				}
+
+				$('#btnAgregaArticulo').text('Cargando...').attr('disabled', true).unbind('click');
+
 
 				var formData = new FormData(document.getElementById("frmArticulos"));
 
@@ -185,24 +220,29 @@ if(isset($_SESSION['usuario'])){
 					contentType: false,
 					processData: false,
 
-					success:function(r){
-						
-						if(r == 1){
+					success: function(r) {
+
+						if (r == 1) {
 							$('#frmArticulos')[0].reset();
 							$('#tablaArticulosLoad').load("articulos/tablaArticulos.php");
 							alertify.success("Agregado con exito :D");
-						}else{
+						} else {
 							alertify.error("Fallo al subir el archivo :(");
 						}
+						$('#btnAgregaArticulo').removeAttr("disabled");
+						$('#btnAgregaArticulo').text('Guardar')
+
 					}
 				});
-				
+
+
+
 			});
 		});
 	</script>
 
-	<?php 
-}else{
+<?php
+} else {
 	header("location:../index.php");
 }
 ?>
