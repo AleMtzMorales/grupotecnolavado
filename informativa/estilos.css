@@ -151,10 +151,11 @@ body{
 
 .close{
     position: absolute;
-    top: 15px;
+    top: 70px ;
     right: 15px;
     width: 40px;
     cursor: pointer;
+    opacity: 1 ;
 }
 
 .experts{
