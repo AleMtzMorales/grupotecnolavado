@@ -73,21 +73,21 @@
     <div class="flexslider">
       <ul class="slides">
         <li>
-          <img src="app/img/sliders/Lavanderia4.jpg" alt="">
+          <img src="app/img/sliders/Lavanderia13.jpg" alt="">
           <section class="flex-caption">
-            <p>GRUPO-TECNOLAVADO</p>
+            <p style="text-shadow: #000000 3px 0 20px; ">GRUPO-TECNOLAVADO</p>
           </section>
         </li>
         <li>
-          <img src="app/img/sliders/Lavanderia2.jpg" alt="">
+          <img  src="app/img/sliders/Lavanderia2.jpg" alt="">
           <section class="flex-caption">
-            <p>GRUPO-TECNOLAVADO</p>
+            <p style="text-shadow: #000000 3px 0 20px; ">GRUPO-TECNOLAVADO</p>
           </section>
         </li>
         <li>
           <img src="app/img/sliders/Lavanderia5.jpg" alt="">
           <section class="flex-caption">
-            <p>GRUPO-TECNOLAVADO</p>
+            <p style="text-shadow: #000000 3px 0 20px; ">GRUPO-TECNOLAVADO</p>
           </section>
         </li>
       </ul>
@@ -201,13 +201,13 @@
         <p>Lavandería y tintorería</p>
       </div>
       <div class="social-media">
-        <a href="./" class="social-media-icon">
+        <a href="https://www.facebook.com/tecnolavado.lavanderia?mibextid=LQQJ4d" target="_blank" class="social-media-icon">
           <i class='bx bxl-facebook'></i>
         </a>
         <!-- <a href="./" class="social-media-icon">
           <i class='bx bxl-twitter'></i>
         </a> -->
-        <a href="./" class="social-media-icon">
+        <a href="https://instagram.com/grupotecnolavado?igshid=YmMyMTA2M2Y=" target="_blank" class="social-media-icon">
           <i class='bx bxl-instagram'></i>
         </a>
       </div>

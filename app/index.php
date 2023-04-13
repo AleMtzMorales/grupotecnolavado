@@ -26,7 +26,7 @@ if (mysqli_num_rows($result) > 0) {
 
 </head>
 
-<body style="background: url(img/imagen8.jpeg);width: 100%;height: 100px; background-repeat: no-repeat;">
+<body style="background: url(img/imagen31.jpeg);width: 100%;height: 100px; background-repeat: no-repeat;">
 	<br><br><br>
 	<div class="container">
 		<div class="row">
@@ -40,13 +40,13 @@ if (mysqli_num_rows($result) > 0) {
 						</p>
 						<form id="frmLogin">
 							<label>Usuario</label>
-							<input type="text" class="form-control input-sm" name="usuario" id="usuario">
+							<input type="text" class="form-control input-lg" name="usuario" id="usuario">
 							<label>Password</label>
-							<input type="password" name="password" id="password" class="form-control input-sm">
+							<input type="password" name="password" id="password" class="form-control input-lg">
 							<p></p>
-							<span class="btn btn-primary btn-sm" id="entrarSistema">Entrar</span>
+							<span class="btn btn-primary btn-lg" id="entrarSistema">Entrar</span>
 							<?php if (!$validar) : ?>
-								<a href="registro.php" class="btn btn-danger btn-sm">Registrar</a>
+								<a href="registro.php" class="btn btn-danger btn-lg">Registrar</a>
 							<?php endif; ?>
 						</form>
 					</div>
