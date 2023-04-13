@@ -26,7 +26,7 @@ if (mysqli_num_rows($result) > 0) {
 
 </head>
 
-<body style="background: url(img/imagen31.jpeg);width: 100%;height: 100px; background-repeat: no-repeat;">
+<body style="background: url(img/Imagen31.jpeg);width: 100%;height: 100px; background-repeat: no-repeat;">
 	<br><br><br>
 	<div class="container">
 		<div class="row">
