@@ -10,6 +10,7 @@ if (isset($_SESSION['usuario'])) {
 
 	<head>
 		<title>articulos</title>
+		<link rel="stylesheet" href="../css/menu.css">
 		<?php require_once "menu.php"; ?>
 		<?php require_once "../clases/Conexion.php";
 		$c = new conectar();
@@ -18,6 +19,51 @@ if (isset($_SESSION['usuario'])) {
 		from categorias";
 		$result = mysqli_query($conexion, $sql);
 		?>
+		<style>
+			
+
+/** SPINNER CREATION **/
+
+.loader {
+  position: relative;
+  text-align: center;
+  margin: 15px auto 35px auto;
+  z-index: 9999;
+  display: block;
+  width: 80px;
+  height: 80px;
+  border: 10px solid rgba(51, 122, 183, .3);
+  border-radius: 50%;
+  border-top-color: #337ab7;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+
+/** MODAL STYLING **/
+
+.modal-content {
+  border-radius: 0px;
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.7);
+}
+
+.modal-backdrop.show {
+  opacity: 0.75;
+}
+
+		</style>
 	</head>
 
 	<body>
@@ -46,6 +92,22 @@ if (isset($_SESSION['usuario'])) {
 						<p></p>
 						<span id="btnAgregaArticulo" class="btn btn-primary">Agregar</span>
 					</form>
+
+
+
+					<!-- Modal -->
+					<div class="modal fade" id="loadMe" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
+						<div class="modal-dialog modal-sm" role="document">
+							<div class="modal-content">
+								<div class="modal-body text-center">
+									<div class="loader"></div>
+									<div clas="loader-txt">
+										<p>Guardando... Por favor espere</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="col-sm-8">
 					<div id="tablaArticulosLoad"></div>
@@ -169,47 +231,50 @@ if (isset($_SESSION['usuario'])) {
 			$('#tablaArticulosLoad').load("articulos/tablaArticulos.php");
 
 			$('#btnAgregaArticulo').click(function() {
+				// $(this).text('Cargando...').attr('disabled', true).unbind('click');
 
-				// vacios = validarFormVacio('frmArticulos');
-				vacios = 0; //validarFormVacio('frmClientes');
+				vacios = validarFormVacio('frmArticulos');
+				// vacios = 0; //validarFormVacio('frmClientes');
 
+				// let campoNombre = $('#nombre').val();
+				// let campoCantidad = $('#cantidad').val();
+				// let campoPrecio = $('#precio').val();
 
+				// if (campoNombre == "") {
+				// 	alertify.alert("El nombre del artículo es requerido");
+				// 	return false;
+				// }
 
-
-
-				let campoNombre = $('#nombre').val();
-				let campoCantidad = $('#cantidad').val();
-				let campoPrecio = $('#precio').val();
-
-				if (campoNombre == "") {
-					alertify.alert("El nombre del artículo es requerido");
-					return false;
-				}
-
-				if (campoCantidad == "") {
-					alertify.alert("La cantidad es requerida");
-					return false;
-				} else if (campoCantidad <= 0 || campoCantidad == "0") {
-					alertify.alert("La cantidad no puede ser 0");
-					return false;
-				}
-				if (campoPrecio == "") {
-					alertify.alert("El precio es requerido");
-					return false;
-				} else if (campoCantidad <= 0 || campoCantidad == "0") {
-					alertify.alert("El precio no puede ser 0");
-					return false;
-				}
+				// if (campoCantidad == "") {
+				// 	alertify.alert("La cantidad es requerida");
+				// 	return false;
+				// } else if (campoCantidad <= 0 || campoCantidad == "0") {
+				// 	alertify.alert("La cantidad no puede ser 0");
+				// 	return false;
+				// }
+				// if (campoPrecio == "") {
+				// 	alertify.alert("El precio es requerido");
+				// 	return false;
+				// } else if (campoCantidad <= 0 || campoCantidad == "0") {
+				// 	alertify.alert("El precio no puede ser 0");
+				// 	return false;
+				// }
 
 				if (vacios > 0) {
 					alertify.alert("Debes llenar todos los campos");
+					// $(this).removeAttr("disabled");
+					// 	$(this).text('Agregar');
 					return false;
 				}
 
-				$('#btnAgregaArticulo').text('Cargando...').attr('disabled', true).unbind('click');
 
+				$("#loadMe").modal({
+					backdrop: "static", //remove ability to close modal with click
+					keyboard: false, //remove option to close with keyboard
+					show: true //Display loader!
+				});			
 
-				var formData = new FormData(document.getElementById("frmArticulos"));
+				let formData = new FormData(document.getElementById("frmArticulos"));
 
 				$.ajax({
 					url: "../procesos/articulos/insertaArticulos.php",
@@ -229,12 +294,11 @@ if (isset($_SESSION['usuario'])) {
 						} else {
 							alertify.error("Fallo al subir el archivo :(");
 						}
-						$('#btnAgregaArticulo').removeAttr("disabled");
-						$('#btnAgregaArticulo').text('Guardar')
-
+					$("#loadMe").modal("hide");
 					}
 				});
-
+				// $(this).removeAttr("disabled");
+				// 		$(this).text('Agregar');
 
 
 			});
