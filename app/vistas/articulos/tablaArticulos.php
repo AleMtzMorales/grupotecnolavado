@@ -46,7 +46,7 @@ $result = mysqli_query($conexion, $sql);
 		<tr>
 			<td>Folio</td>
 			<td>Nombre</td>
-			<td>Descripcion</td>
+			<td>Descripción</td>
 			<td>Cantidad kg / piezas</td>
 			<td>Precio</td>
 			<td>Imagen</td>

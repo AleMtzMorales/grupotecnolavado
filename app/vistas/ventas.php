@@ -19,7 +19,7 @@ if (isset($_SESSION['usuario'])) {
 			<h1>Ventas</h1>
 			<div class="row">
 				<div class="col-sm-12">
-					<span class="btn btn-default" id="ventaProductosBtn">Vender producto</span>
+					<span class="btn btn-default" id="ventaProductosBtn">Crear venta</span>
 					<span class="btn btn-default" id="ventasHechasBtn">Ventas hechas</span>
 					<span class="btn btn-default" id="corteDeCajaBtn">Corte de caja</span>
 				</div>

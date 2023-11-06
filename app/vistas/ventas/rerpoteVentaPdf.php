@@ -127,7 +127,7 @@ $total = 0; // Total para ventas pagadas
 			<td><strong>Producto</strong></td>
 			<td><strong>Precio</strong></td>
 			<td><strong>Cantidad kg/pieza</strong></td>
-			<td><strong>Descripcion</strong></td>
+			<td><strong>Descripción</strong></td>
 			<td><strong>Cliente</strong></td>
 			<td><strong>Estatus</strong></td>
 			<td><strong>Fecha y hora</strong></td>
@@ -212,7 +212,7 @@ $total = 0; // Total para ventas pagadas
 			<td><strong>Anticipo</strong></td>
 			<!-- <td><strong>Restante</strong></td> -->
 			<td><strong>Cantidad kg/pieza</strong></td>
-			<td><strong>Descripcion</strong></td>
+			<td><strong>Descripción</strong></td>
 			<td><strong>Cliente</strong></td>
 			<td><strong>Estatus</strong></td>
 			<td><strong>Fecha y hora de pago</strong></td>

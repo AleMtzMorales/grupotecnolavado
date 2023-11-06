@@ -81,7 +81,7 @@ if (isset($_SESSION['usuario'])) {
 						</select>
 						<label>Nombre</label>
 						<input type="text" class="form-control input-sm" id="nombre" name="nombre">
-						<label>Descripcion</label>
+						<label>Descripción</label>
 						<input type="text" class="form-control input-sm" id="descripcion" name="descripcion">
 						<label>Cantidad kg / piezas</label>
 						<input type="number" class="form-control input-sm" id="cantidad" name="cantidad" min="1">
@@ -142,7 +142,7 @@ if (isset($_SESSION['usuario'])) {
 							</select>
 							<label>Nombre</label>
 							<input type="text" class="form-control input-sm" id="nombreU" name="nombreU">
-							<label>Descripcion</label>
+							<label>Descripción</label>
 							<input type="text" class="form-control input-sm" id="descripcionU" name="descripcionU" min="1">
 							<label>Cantidad kg / piezas</label>
 							<input type="text" class="form-control input-sm" id="cantidadU" name="cantidadU" min="1" min>

@@ -36,7 +36,7 @@ session_start();
 	<thead>
 		<tr>
 			<td>Nombre</td>
-			<td>Descripcion</td>
+			<td>Descripción</td>
 			<td>Precio</td>
 			<td>Cantidad</td>
 			<td>Quitar</td>
