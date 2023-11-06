@@ -123,7 +123,7 @@
     </section>
     <section class="gallery" id="galeria">
       <div class="contenedor">
-        <h2 class="subtitulo">Galeria</h2>
+        <h2 class="subtitulo">Galería</h2>
         <div class="contenedor-galeria">
           <img src="app/img/imagen16.jpeg" class="img-galeria" alt="Cartel informativo tecnolavado">
           <img src="app/img/imagen18.jpeg" class="img-galeria" alt="Imagen interior de lavanderia">
