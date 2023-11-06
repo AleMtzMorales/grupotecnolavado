@@ -16,7 +16,7 @@ $conexion = $c->conexion();
 				<!-- <option value="0">Sin cliente</option> -->
 				<?php
 				$sql = "SELECT id_cliente,nombre,apellido 
-				from clientes";
+				from clientes ORDER BY id_cliente DESC";
 				$result = mysqli_query($conexion, $sql);
 				while ($cliente = mysqli_fetch_row($result)) :
 				?>

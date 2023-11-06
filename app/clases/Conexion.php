@@ -1,10 +1,10 @@
 <?php 
 
 	class conectar{
-		private $servidor="212.1.210.115";
-		private $usuario="grupotec_Grupo-Tecnolavado";
-		private $password="ale_1998";
-		private $bd="grupotec_lavanderia";
+		private $servidor="92.249.45.106";
+		private $usuario="grup1396_markconfig";
+		private $password="markconfig";
+		private $bd="grup1396_ventas";
 
 		public function conexion(){
 			$conexion=mysqli_connect($this->servidor,
